@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { TextField, Button, Box } from '@mui/material';
 import axios from 'axios';
+import {actionCreateTask} from '@/app/actions';
 
 interface TaskFormProps {
   fetchTasks: () => void; // Define the type of fetchTasks prop
@@ -27,7 +28,9 @@ const TaskForm: React.FC<TaskFormProps> = ({ fetchTasks, taskToEdit, setTaskToEd
       if(taskToEdit){
         await axios.patch(`http://localhost:30001/tasks/${taskToEdit._id}`, { title, description });
       } else {
-        await axios.post('http://localhost:30001/tasks', { title, description, isCompleted: false });
+
+        await actionCreateTask({ title, description, isCompleted: false })
+        // await axios.post('http://localhost:30001/tasks', { title, description, isCompleted: false });
       }
       // await axios.post('http://localhost:30001/tasks', { title, description, isCompleted: false });
       setTitle('');

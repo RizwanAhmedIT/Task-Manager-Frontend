@@ -18,21 +18,16 @@ import {
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit'
 import axios from 'axios';
+import { Task } from '@/types/interface';
 
-interface Task {
-  _id: string;
-  title: string;
-  description: string;
-  isDone: boolean;
-  // Add more fields if your task object has them
-}
+
 
 interface TaskListProps {
   tasks: Task[];
   fetchTasks: () => void;
 }
 
-const TaskList: React.FC<TaskListProps> = ({ tasks, fetchTasks }) => {
+const TaskList = ({ tasks, fetchTasks }: TaskListProps) => {
   const [openEditDialog, setOpenEditDialog] = useState(false);
   const [taskToEdit, setTaskToEdit] = useState(null);
   
